@@ -31,9 +31,6 @@ td, th {
   background-color: #282b2c;
 }
 
-table {
-}
-
 body {
   background-color: #464849;
 }
@@ -69,19 +66,35 @@ thead th:nth-child(6) {
 }
 
 .video {
+  width: 55%;
   background-color: #282b2c;
+  height: 300px;
 }
 
 .textBox {
   background-color: #282b2c;
   height: 220px;
-  margin-left: -0vw;
-  /*-50vw;: -50vw;*/
-  width: 52vw;
+  width: 45%;
+  color: #ffffff;
+  /*padding: 50px;*/
 }
 
 .top {
   /*position: fixed;*/
   width: 100%;
+}
+
+.subtitlesBoxFormsAll:hover {
+  cursor: pointer;
+}
+
+.top {
+  box-sizing: border-box;
+}
+
+.toolbar {
+  width: 45%;
+  height: 22px;
+  background-color: #0000;
 }
 
