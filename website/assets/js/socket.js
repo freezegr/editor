@@ -1,20 +1,30 @@
 const { ipcRenderer } = require('electron');
 
+let titles; 
+
 ipcRenderer.on('subtitles', (event, data) => {
-    const subttitles = data.filter(x => x.section == "Events")[0].body
+    document.title = data.filename;
+    const subttitles = data["subtitles"].filter(x => x.section == "Events")[0].body
     const elem = document.getElementsByClassName('subtitlesBoxFormsAll');
     $(".subtitlesBoxFormsAll").empty()
+    titles = subttitles
     subttitles.forEach((x, count) => {
         x.value.count = count
         let txt = addSubtitles(x.value)
         $(".subtitlesBoxFormsAll").append(txt);
-        console.log(addSubtitles(x.value))
     });
 });
 
+//8umisou stathi na baleis kapoia stigmi otan einai to idio row na min kanei tpt
+let selected; 
 function active(count){
-    let elem = document.getElementsByClassName(`row-${count}`);
-    console.log(elem)
+    if(selected) selected.classList.remove("selected");
+    selected = document.getElementsByClassName(`row-${count}`)[0];
+    selected.classList.add("selected")
+    let textBox = document.getElementsByClassName("textBox")
+    let whotext = titles[count]
+    console.log(whotext.value.Text)
+    $(".textBox").val(whotext.value.Text);
 };
 
 function addSubtitles(opts){

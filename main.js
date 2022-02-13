@@ -11,7 +11,7 @@ function createWindow () {
       enableRemoteModule: true,
     }
   })
-
+  mainWindow.maximize()
   mainWindow.loadFile('./website/index.html')
   return mainWindow
 }

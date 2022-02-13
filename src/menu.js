@@ -1,5 +1,6 @@
 const { dialog } = require('electron');
 const { loadSubtitles } = require('./loadAss.js');
+const path = require("path");
 
 const menus = (window) => {
     return template = [
@@ -15,10 +16,14 @@ const menus = (window) => {
                     click: function () {
                         dialog.showOpenDialog({
                             filters: [
-                                { name: 'Subtitles', extensions: ["ass", "sass"] }
+                                { name: 'ass/sass', extensions: ["ass", "sass"] }
                             ],
                         }).then(x => {
-                            window.webContents.send('subtitles', loadSubtitles(x.filePaths[0]))
+                            let data = {
+                                filename: path.basename(x.filePaths[0]),
+                                subtitles: loadSubtitles(x.filePaths[0])
+                            }
+                            window.webContents.send('subtitles', data)
                         })
                     }
                 },
@@ -30,7 +35,7 @@ const menus = (window) => {
                 },
                 {
                     label: "Inpect element",
-                    accelerator: 'CmdOrCtrl+Shift+c',
+                    accelerator: 'CmdOrCtrl+Shift+C',
                     click: function () {
                         window.webContents.openDevTools()
                     }

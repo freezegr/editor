@@ -102,3 +102,7 @@ thead th:nth-child(6) {
   background-color: var(--bs-indigo);
 }
 
+.selected > td {
+  background-color: #666161;
+}
+
