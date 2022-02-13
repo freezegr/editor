@@ -11,7 +11,7 @@ thead th:nth-child(1) {
   width: 1%;
 }
 
-th, td {
+.table, th, td {
   padding: 0%;
 }
 
@@ -37,7 +37,7 @@ body {
 
 thead th:nth-child(1) {
   background-color: #282b2c;
-  width: 1%;
+  width: 2%;
 }
 
 thead th:nth-child(2) {
@@ -75,8 +75,8 @@ thead th:nth-child(6) {
   background-color: #282b2c;
   height: 220px;
   width: 45%;
+  padding: 2px 5px;
   color: #ffffff;
-  /*padding: 50px;*/
 }
 
 .top {
@@ -96,5 +96,9 @@ thead th:nth-child(6) {
   width: 45%;
   height: 22px;
   background-color: #0000;
+}
+
+.subtitlesBoxFormsAll:checked {
+  background-color: var(--bs-indigo);
 }
 

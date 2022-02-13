@@ -12,11 +12,16 @@ ipcRenderer.on('subtitles', (event, data) => {
     });
 });
 
+function active(count){
+    let elem = document.getElementsByClassName(`row-${count}`);
+    console.log(elem)
+};
+
 function addSubtitles(opts){
     if(!opts.Start) return false;
     
     let text = `
-      <tr>
+      <tr class="row-${opts.count}" onclick="active(${opts.count})">
         <td>${opts.count}</td>
         <td>${opts.Start}</td>
         <td>${opts.End}</td>
