@@ -36,7 +36,8 @@ ipcMain.on("exportsAss", (event, data) => {
       {
         name: 'ass/ssa',
         extensions: ['ass']
-      },],
+      },
+    ],
     properties: []
   }).then(file => {
     if (!file.canceled) {
