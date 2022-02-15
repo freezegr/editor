@@ -15,15 +15,25 @@ ipcRenderer.on('subtitles', (event, data) => {
     });
 });
 
+ipcRenderer.on('videoOpen', (event, data) => {
+  $(".video")[0].src = data;
+});
+
 //8umisou stathi na baleis kapoia stigmi otan einai to idio row na min kanei tpt
 let selected; 
 function active(count){
     if(selected) selected.classList.remove("selected");
     selected = document.getElementsByClassName(`row-${count}`)[0];
     selected.classList.add("selected")
-    let textBox = document.getElementsByClassName("textarea.language-js.fill")
+    let textBox = document.getElementsByClassName("textBox")
     let whotext = titles[count]
-    $(".textarea.language-js.fill").val(whotext.value.Text);
+    console.log(whotext.value.Text)
+    $(".textBox").val(whotext.value.Text);
+
+    if($(".video")[0].src != ''){
+      //'01:20'.split(':').reverse().reduce((prev, curr, i) => prev + curr*Math.pow(60, i), 0)
+
+    };
 };
 
 function addSubtitles(opts){
@@ -42,19 +52,7 @@ function addSubtitles(opts){
     return text;
 }
 
-(async function($, $$) {
-  
-  $$("textarea.language-js.fill").forEach(t => {
-    t.value = "sdasdasdasda sdasd dasdasdasda {sdasdasdasd}";
-    t.dispatchEvent(new InputEvent("input"));
-  });
-  
-  
-  })(Bliss, Bliss.$);
-
 //<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 //<script src="assets/js/socket.js"></script>
 //<script src="highlight-ta.js"></script>
 //<script src="highlight-ta-proto.js"></script>
-//<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css">
-//<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>

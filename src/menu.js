@@ -67,7 +67,17 @@ const menus = (window) => {
             label: 'Video',
             submenu: [
                 {
-                    label: "Open Video"
+                    label: "Open Video",
+                    accelerator: 'CmdOrCtrl+O+V',
+                    click: function(){
+                        dialog.showOpenDialog({
+                            filters: [
+                                { name: 'mp4/mkv', extensions: ["mkv", "mp4"] }
+                            ],
+                        }).then(x => {
+                            window.webContents.send('videoOpen', x.filePaths[0])
+                        })
+                    }
                 },
                 {
                     label: "Close Video"
