@@ -18,7 +18,6 @@ function createWindow () {
 
 app.whenReady().then(() => {
   let window = createWindow();
-
   const template = menus(window)
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);

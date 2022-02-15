@@ -1,5 +1,6 @@
 const { dialog } = require('electron');
 const { loadSubtitles } = require('./loadAss.js');
+const { exportsTitles } = require('./exportsTitles.js');
 const path = require("path");
 
 const menus = (window) => {
@@ -12,7 +13,7 @@ const menus = (window) => {
                 },
                 {
                     label: 'Open Subtitles',
-                    accelerator: 'CmdOrCtrl+o',
+                    accelerator: 'CmdOrCtrl+O',
                     click: function () {
                         dialog.showOpenDialog({
                             filters: [
@@ -31,7 +32,11 @@ const menus = (window) => {
                     label: 'Save'
                 },
                 {
-                    label: 'Save as'
+                    label: 'Save as',
+                    accelerator: 'CmdOrCtrl+Shift+S',
+                    click: function() {
+                        window.webContents.send('saveFileAs')
+                    }
                 },
                 {
                     label: "Inpect element",
