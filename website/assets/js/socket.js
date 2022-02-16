@@ -50,6 +50,7 @@ function active(count){
     let textBox = document.getElementsByClassName("textBox")
     let whotext = titles[count]
     $(".textBox").val(whotext.value.Text);
+
     if($(".video")[0].src != ''){
       //'01:20'.split(':').reverse().reduce((prev, curr, i) => prev + curr*Math.pow(60, i), 0)
       $(".video")[0].currentTime = whotext.value.Start.split(':').reverse().reduce((prev, curr, i) => prev + curr*Math.pow(60, i), 0)
@@ -88,8 +89,14 @@ function addSubtitles(opts, isInTheSubtitles = true){
           "count": 4
         }
       })
-    } 
-}
+    }
+  };
+$('.textBox').bind('keydown.ctrl_enter', () => {
+  let text = $('.textBox').val()
+  let count = parseInt(selected.children[0].innerText)
+  let whotext = titles[count]
+  selected.children[5].innerText = text
+});
 
 
 //<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
