@@ -1,7 +1,9 @@
 const { ipcRenderer, remote, ipcMain } = require('electron');
 
 let titles; 
-let datas;
+let datas = loadDefaultSubs();
+titles = datas.filter(x => x.section == "Events")[0].body
+addSubtitles({}, false)
 
 ipcRenderer.on('subtitles', (event, data) => {
     document.title = data.filename;
