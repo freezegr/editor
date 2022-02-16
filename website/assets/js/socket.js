@@ -5,15 +5,14 @@ let datas;
 
 ipcRenderer.on('subtitles', (event, data) => {
     document.title = data.filename;
-    const subttitles = data["subtitles"].filter(x => x.section == "Events")[0].body
     const elem = document.getElementsByClassName('subtitlesBoxFormsAll');
     $(".subtitlesBoxFormsAll").empty()
-    titles = subttitles
+    titles = data["subtitles"].filter(x => x.section == "Events")[0].body
     datas = data.subtitles
-    subttitles.forEach((x, count) => {
+    console.log(titles)
+    titles.forEach((x, count) => {
         x.value.count = count
-        let txt = addSubtitles(x.value)
-        $(".subtitlesBoxFormsAll").append(txt);
+        addSubtitles(x.value)
     });
 });
 
@@ -33,9 +32,7 @@ function active(count){
     selected.classList.add("selected")
     let textBox = document.getElementsByClassName("textBox")
     let whotext = titles[count]
-    console.log(whotext.value.Text)
     $(".textBox").val(whotext.value.Text);
-    console.log(whotext.value)
     if($(".video")[0].src != ''){
       //'01:20'.split(':').reverse().reduce((prev, curr, i) => prev + curr*Math.pow(60, i), 0)
       $(".video")[0].currentTime = whotext.value.Start.split(':').reverse().reduce((prev, curr, i) => prev + curr*Math.pow(60, i), 0)
@@ -43,20 +40,38 @@ function active(count){
     };
 };
 
-function addSubtitles(opts){
-    if(!opts.Start) return false;
-    
-    let text = `
-      <tr class="row-${opts.count}" onclick="active(${opts.count})">
-        <td>${opts.count}</td>
-        <td>${opts.Start}</td>
-        <td>${opts.End}</td>
+function addSubtitles(opts, isInTheSubtitles = true){
+  const { Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text, count} = opts
+  if(Array.isArray(opts) == true) return;
+  let text = `
+      <tr class="row-${count ? count : titles.length}" onclick="active(${count ? count : titles.length})">
+        <td>${count ? count : titles.length}</td>
+        <td>${Start ? Start: '00:00:00'}</td>
+        <td>${End ? End: '00:00:01'}</td>
         <td>20</td>
-        <td>${opts.Style}</td>
-        <td>${opts[Object.keys(opts)[Object.keys(opts).length - 2]]}</td>
+        <td>${Style ? Style: "Default"}</td>
+        <td>${Text ? Text: ' '}</td>
       </tr>
-    `
-    return text;
+      `
+    $(".subtitlesBoxFormsAll").append(text);
+    if(isInTheSubtitles == false){
+      titles.push({
+        key: "Dialogue",
+        value: {
+          "Layer": "10",
+          "Start": Start ? Start: '00:00:00',
+          "End": End ? End: '00:00:01',
+          "Style": Style ? Style: "Default",
+          "Name": Name ? Name: "ector",
+          "MarginL": MarginL ? MarginL: "0",
+          "MarginR": MarginR ? MarginR: "0",
+          "MarginV": MarginV ? MarginV: "0",
+          "Effect": "",
+          "Text": Text ? Text: '',
+          "count": 4
+        }
+      })
+    } 
 }
 
 //<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>

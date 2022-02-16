@@ -29,7 +29,11 @@ const menus = (window) => {
                     }
                 },
                 {
-                    label: 'Save'
+                    label: 'Save',
+                    accelerator: 'CmdOrCtrl+S',
+                    click: function() {
+                        window.webContents.send('saveFileAs')
+                    }
                 },
                 {
                     label: 'Save as',
