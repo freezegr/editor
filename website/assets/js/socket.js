@@ -9,11 +9,26 @@ ipcRenderer.on('subtitles', (event, data) => {
     $(".subtitlesBoxFormsAll").empty()
     titles = data["subtitles"].filter(x => x.section == "Events")[0].body
     datas = data.subtitles
-    console.log(titles)
     titles.forEach((x, count) => {
         x.value.count = count
         addSubtitles(x.value)
     });
+
+    let ProjectOpts = datas.filter(x => x.section == "Aegisub Project Garbage");
+    if(ProjectOpts.length != 0 && ProjectOpts[0].body.filter(l => l.key == "Video File").length != 0 && ProjectOpts[0].body.filter(l => l.key == "Video File")[0].value != undefined){
+      $.confirm({
+        title: 'Confirm!',
+        content: 'Thery are a video do you want load it',
+        buttons: {
+            cancel: function () {
+              //do nothing
+            },
+            confirm: function () {
+              $(".video")[0].src =  ProjectOpts[0].body.filter(l => l.key == "Video File")[0].value;
+            }
+        }
+      });
+    }
 });
 
 ipcRenderer.on('videoOpen', (event, data) => {
@@ -73,6 +88,7 @@ function addSubtitles(opts, isInTheSubtitles = true){
       })
     } 
 }
+
 
 //<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 //<script src="assets/js/socket.js"></script>

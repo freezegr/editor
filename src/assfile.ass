@@ -9,14 +9,13 @@ PlayResX: 1280
 PlayResY: 720
 
 [Aegisub Project Garbage]
-Audio File: youkoso12_premux.mkv
-Video File: youkoso12_premux.mkv
-Keyframes File: youkoso12_premux_keyframes.log
-Video AR Mode: 4
-Video AR Value: 1.777778
-Video Zoom Percent: 0.750000
-Scroll Position: 66
-Active Line: 70
+; Audio File: lel.mkv
+Video File: C:\Users\stats\Downloads\[MTBB] Classroom of the Elite\[MTBB] Classroom of the Elite - 12 [3A3B9906].mkv
+; Keyframes File: youkoso12_premux_keyframes.log
+; Video AR Mode: 4
+; Video AR Value: 1.777778
+; Video Zoom Percent: 0.750000
+; Scroll Position: 66 
 Video Position: 7346
 
 [V4+ Styles]
