@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, dialog, nativeTheme } = require('electron');
 const menus = require('./src/menu.js');
 const path = require('path');
 const { exportsTitles } = require('./src/exportsTitles.js');
@@ -22,12 +22,12 @@ function createWindow() {
 app.whenReady().then(() => {
   let window = createWindow();
   const template = menus(window)
+  nativeTheme.themeSource = 'dark'
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 })
 
 ipcMain.on("exportsAss", (event, data) => {
-  console.log(data)
   dialog.showSaveDialog({
     title: 'Select the File Path to save',
     buttonLabel: 'Save',
