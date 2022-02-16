@@ -6,11 +6,13 @@ const exportsTitles = (data) => {
             if(l.type == "comment"){
                 str += "; " + l.value + "\n"
             } else if(l.key){
-                if(typeof l.value == "string"){
-                    str += `${l.key}: ${l.value}\n`
-                } else if(typeof l.value == "object"){
-                    let val = Object.values(l.value).join()
-                    str += `${l.key}: ${val}\n`
+                if(l.key != 'count'){
+                    if(typeof l.value == "string"){
+                        str += `${l.key}: ${l.value}\n`
+                    } else if(typeof l.value == "object"){
+                        let val = Object.values(l.value).join()
+                        str += `${l.key}: ${val}\n`
+                    }
                 }
             }
             if(x.body.length == count+1) str += '\n'
