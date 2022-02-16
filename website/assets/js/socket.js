@@ -91,13 +91,22 @@ function addSubtitles(opts, isInTheSubtitles = true){
       })
     }
   };
-$('.textBox').bind('keydown.ctrl_enter', () => {
-  let text = $('.textBox').val()
-  let count = parseInt(selected.children[0].innerText)
-  let whotext = titles[count]
-  selected.children[5].innerText = text
+// $('.textBox').bind('keydown.ctrl_enter', () => {
+//   let text = $('.textBox').val()
+//   let count = parseInt(selected.children[0].innerText)
+//   let whotext = titles[count]
+//   selected.children[5].innerText = text
+// });
+$('.textBox').bind('keydown', 'return', (e) => {
+  e.preventDefault();
+    var msg = $(".textBox").val().replace("\n", "");
+    if (msg == ""){
+        send(msg);
+        $(".textBox").val("");
+    }
 });
 
+$('.textBox').bind('keydown', 'ctrl+return', () => console.log("lel"))
 
 //<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 //<script src="assets/js/socket.js"></script>
