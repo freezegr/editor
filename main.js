@@ -25,7 +25,7 @@ app.whenReady().then(() => {
   nativeTheme.themeSource = 'dark'
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
-})
+});
 
 ipcMain.on("exportsAss", (event, data) => {
   dialog.showSaveDialog({
