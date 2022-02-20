@@ -8,12 +8,14 @@ function createWindow() {
   let mainWindow = new BrowserWindow({
     width: 1100,
     height: 800,
+    icon:'./assets/appICon.ico',
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
       enableRemoteModule: true,
     }
-  })
+  });
+
   mainWindow.maximize()
   mainWindow.loadFile('./website/index.html')
   return mainWindow
@@ -22,7 +24,6 @@ function createWindow() {
 app.whenReady().then(() => {
   let window = createWindow();
   const template = menus(window)
-  nativeTheme.themeSource = 'dark'
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 });

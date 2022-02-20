@@ -5,7 +5,6 @@ subs.init();
 
 ipcRenderer.on('subtitles', (event, data) => {
     subs.openSubTitles(data);
-
 });
 
 ipcRenderer.on('videoOpen', (event, data) => {

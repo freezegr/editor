@@ -17,7 +17,7 @@ const menus = (window) => {
                     click: function () {
                         dialog.showOpenDialog({
                             filters: [
-                                { name: 'ass/sass', extensions: ["ass", "sass"] }
+                                { name: 'Open ass/ssa', extensions: ["ass", "sass"] }
                             ],
                         }).then(x => {
                             let data = {
