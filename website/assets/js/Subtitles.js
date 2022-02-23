@@ -27,7 +27,14 @@ class Subtitles {
         this.subtitles = data["subtitles"].filter(x => x.section == "Events")[0].body
 
         this.subtitles.forEach((x, count) => {
-            x.value.count = count;
+            x.value.count = count
+            let id;
+            do {
+                id = this.generateID();
+                console.log(id)
+            } while (false)
+            x.value.id = id
+
             this.addSubtitles(x.value)
         });
 
@@ -63,11 +70,11 @@ class Subtitles {
     }
 
     //selecte a 
-    selecte(count) {
+    selecte(id) {
         if (this.selected) this.selected.classList.remove("selected");
-        this.selected = document.getElementsByClassName(`row-${count}`)[0];
+        this.selected = document.getElementsByClassName(`row-${id}`)[0];
         this.selected.classList.add("selected");
-        let whotext = this.subtitles[count]
+        let whotext = this.getSubtitle(id)
 
         if (whotext.value.Text != "") {
             this.textBoxElem.val(whotext.value.Text);
@@ -82,10 +89,17 @@ class Subtitles {
     }
 
     addSubtitles(opts, isInTheSubtitles = true) {
-        const { Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text, count } = opts
+        const { Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text, count, id } = opts
         if (Array.isArray(opts) == true) return;
+        let id2;
+        if(!id){
+            do {
+                id2 = this.generateID();
+            } while (false)
+        }
+
         let text = `
-        <tr class="row-${count ? count : this.subtitles.length}" onclick="subs.selecte(${count ? count : this.subtitles.length})">
+        <tr class="row-${id ? id: id2}" onclick="subs.selecte('${id ? id: id2}')">
           <td>${count ? count : this.subtitles.length}</td>
           <td>${Start ? Start : '00:00:00'}</td>
           <td>${End ? End : '00:00:01'}</td>
@@ -96,23 +110,35 @@ class Subtitles {
         this.subsListElem.append(text);
 
         if (isInTheSubtitles == false) {
+            console.log(id2)
             this.subtitles.push({
                 key: "Dialogue",
                 value: {
-                    "Layer": "10",
-                    "Start": Start ? Start : '00:00:00',
-                    "End": End ? End : '00:00:01',
-                    "Style": Style ? Style : "Default",
-                    "Name": Name ? Name : "ector",
-                    "MarginL": MarginL ? MarginL : "0",
-                    "MarginR": MarginR ? MarginR : "0",
-                    "MarginV": MarginV ? MarginV : "0",
-                    "Effect": "",
-                    "Text": Text ? Text : '',
-                    "count": 4
+                    Layer: "10",
+                    Start: Start ? Start : '00:00:00',
+                    End: End ? End : '00:00:01',
+                    style: Style ? Style : "Default",
+                    Name: Name ? Name : "ector",
+                    MarginL: MarginL ? MarginL : "0",
+                    MarginR: MarginR ? MarginR : "0",
+                    MarginV: MarginV ? MarginV : "0",
+                    Effect: "",
+                    Text: Text ? Text : '',
+                    id: id ? id: id2
                 }
             })
         }
+    }
+
+    getSubtitle(id) {
+        return this.subtitles.filter(x => x.value.id == id)[0] || false;
+    }
+
+    generateID() {
+        return 'xxxx-xxxx-xxxx-yxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
     }
 }
 
