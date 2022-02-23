@@ -69,7 +69,7 @@ class Subtitles {
         }
     }
 
-    //selecte a 
+    //selecte a row on table
     selecte(id) {
         if (this.selected) this.selected.classList.remove("selected");
         this.selected = document.getElementsByClassName(`row-${id}`)[0];
@@ -84,10 +84,12 @@ class Subtitles {
         };
     }
 
+    //add video src on video tag
     addVideo(src) {
         this.videoElem[0].src = src
     }
 
+    //add subtitle on table and on var
     addSubtitles(opts, isInTheSubtitles = true) {
         const { Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text, count, id } = opts
         if (Array.isArray(opts) == true) return;
@@ -130,10 +132,12 @@ class Subtitles {
         }
     }
 
+    //get a subttile by id
     getSubtitle(id) {
         return this.subtitles.filter(x => x.value.id == id)[0] || false;
     }
-
+    
+    //generate a id
     generateID() {
         return 'xxxx-xxxx-xxxx-yxxx'.replace(/[xy]/g, function (c) {
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
