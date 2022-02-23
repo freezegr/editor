@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "commit": "git add . && git commit -m 'v0.0.1' && git push origin master"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
