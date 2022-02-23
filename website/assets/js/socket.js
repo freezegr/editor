@@ -25,12 +25,15 @@ $('.textBox').bind('keydown', 'ctrl+return', () => {
     subs.selected.children[5].innerText = text
 });
 
-$('.textBox').bind('keydown', 'return', (e) => {
-    e.preventDefault();
-    var msg = $(".textBox").val().replace("\n", "");
-    if (msg == "") {
-        $(".textBox").val("");
-    }
+$('.textBox').bind('keydown', 'return', () => {
+    if (!subs.selected) return;
+    let currentSelected = parseInt(subs.selected.children[0].innerText);
+    let all = subs.subtitles.length - 1;
+    if(currentSelected == all) return;
+
+    let nextId = $('.subtitlesBoxFormsAll').find('tr')[currentSelected].getAttribute('class').replace('row-', '')
+
+    subs.selecte(nextId)
 });
 
 $(document).ready(function () {

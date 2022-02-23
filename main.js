@@ -10,6 +10,7 @@ function createWindow() {
     height: 800,
     icon:'./assets/appICon.ico',
     webPreferences: {
+      preload: path.join(__dirname, '/src/preload.js'),
       nodeIntegration: true,
       contextIsolation: false,
       enableRemoteModule: true,
@@ -27,6 +28,10 @@ app.whenReady().then(() => {
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 });
+
+ipcMain.on('console', data => {
+  console.log(data)
+})
 
 ipcMain.on("exportsAss", (event, data) => {
   dialog.showSaveDialog({
