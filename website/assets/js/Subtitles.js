@@ -32,7 +32,7 @@ class Subtitles {
             do {
                 id = this.generateID();
                 console.log(id)
-            } while (!this.getSubtitle(id))
+            } while (false)
             x.value.id = id
 
             this.addSubtitles(x.value)
@@ -97,7 +97,7 @@ class Subtitles {
         if(!id){
             do {
                 id2 = this.generateID();
-            } while (!this.getSubtitle(id))
+            } while (false)
         }
 
         let text = `
