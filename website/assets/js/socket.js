@@ -30,9 +30,7 @@ $('.textBox').bind('keydown', 'return', () => {
     let currentSelected = parseInt(subs.selected.children[0].innerText);
     let all = subs.subtitles.length - 1;
     if(currentSelected == all) return;
-
     let nextId = $('.subtitlesBoxFormsAll').find('tr')[currentSelected].getAttribute('class').replace('row-', '')
-
     subs.selecte(nextId)
 });
 
